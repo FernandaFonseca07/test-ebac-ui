@@ -6,5 +6,7 @@ describe ('Funcionalidade: Login', () => {
         cy.get('#username').type('fernanda123@teste.com')
         cy.get('#password').type('teste123')
         cy.get('.woocommerce-form > .button').click()
+
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, fernanda123 (não é fernanda123? Sair)')
     })
 })
