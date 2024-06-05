@@ -1,9 +1,10 @@
 /// <reference types="cypress"/>
+import produtosPage from "../../support/pages-objects/produtos.page";
 
 describe('Funcionalidade: Produtos', () => {
 
     beforeEach(() => {
-        cy.visit('produtos')
+        produtosPage.visitarUrl()
     });
 
     it('Deve selecionar um produto', () => {
@@ -16,12 +17,27 @@ describe('Funcionalidade: Produtos', () => {
         cy.get('.single_add_to_cart_button').should('contain', 'Comprar')
     });
 
-    it.only('Deve selecionar um produto por texto', () => {
+    it('Deve selecionar um produto por texto', () => {
         cy.get('.products > .row')
             .contains('Apollo Running Short')
             .click()
       
         cy.get('.single_add_to_cart_button').should('contain', 'Comprar')
+        
+    });
+
+    it.only('Deve buscar um produto com sucesso', () => {
+        let nomeProduto = 'Atlas Fitness Tank'
+        produtosPage.buscarproduto(nomeProduto)
+        cy.get('.product_title').should('contain', nomeProduto)      
+    });
+
+    it('Deve visitar a página do produto', () => {
+        produtosPage.buscarProdutoLista('Aether Gym Pant')
+        
+    });
+
+    it('Deve adicionar produto ao carrinho', () => {
         
     });
 });
