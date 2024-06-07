@@ -26,7 +26,7 @@ describe('Funcionalidade: Produtos', () => {
         
     });
 
-    it.only('Deve buscar um produto com sucesso', () => {
+    it('Deve buscar um produto com sucesso', () => {
         let nomeProduto = 'Atlas Fitness Tank'
         produtosPage.buscarproduto(nomeProduto)
         cy.get('.product_title').should('contain', nomeProduto)      
@@ -34,10 +34,26 @@ describe('Funcionalidade: Produtos', () => {
 
     it('Deve visitar a página do produto', () => {
         produtosPage.buscarProdutoLista('Aether Gym Pant')
-        
+    });
+
+    it('Deve visitar página produto pela url', () => {
+        let nomeProduto = 'Aether Gym Pant'
+        produtosPage.visitarPagProduto(nomeProduto)
+        cy.get('.product_title').should('contain', nomeProduto) 
     });
 
     it('Deve adicionar produto ao carrinho', () => {
-        
+        let nomeProduto = 'Atlas Fitness Tank'
+        produtosPage.buscarproduto(nomeProduto)
+        produtosPage.addProdutoCarrinho('M','Blue', '3')
+        cy.get('.woocommerce-message').should('contain', nomeProduto)                 
+    });
+
+    it.only('Deve adicionar produto ao carrinho buscando da massa de dados', () => {
+        cy.fixture('produtos').then(dados =>{
+        produtosPage.buscarproduto(dados[0].nomeProduto)
+        produtosPage.addProdutoCarrinho(dados[0].tamanho,dados[0].cor, dados[0].quantidade)
+        cy.get('.woocommerce-message').should('contain', dados[0].nomeProduto) 
+        })               
     });
 });

@@ -1,0 +1,22 @@
+[
+    {
+        "nomeProduto" :"Apollo Running Short",
+        "tamanho":33,
+        "cor":"Black",
+        "quantidade":"5"
+    },
+
+    {
+        "nomeproduto" :"Ariel Roll Sleeve Sweatshirt",
+        "tamanho":"S",
+        "cor":"Green",
+        "quantidade":"20"
+    },
+
+    {
+        "nomeproduto" :"Lucia Cross-Fit Bra",
+        "tamanho":"M",
+        "cor":"Orange",
+        "quantidade":"50"
+    }
+]
